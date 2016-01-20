@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="springApp">
+
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="Spring & Angular demo app">
+    <meta name="author" content="Saša Radovanović (Frequent_Flyer)">
+
+	<title>Frequent Flyer</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    
+    
+    <!-- Bootstrap core CSS     -->
+    <link href="partials/btheme/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="partials/btheme/assets/css/animate.min.css" rel="stylesheet"/>
+    
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="partials/btheme/assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    
+    
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="partials/btheme/assets/css/demo.css" rel="stylesheet" />
+    
+        
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="partials/btheme/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+
+    <link href="springApp.css" rel="stylesheet">
+
+
+	 <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Angular -->
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-route.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-resource.js"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-cookies.js"></script>
+	
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-animate.js"></script>
+	
+		<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-sanitize.js"></script>
+	
+
+
+    <script src="js/angular-local-storage/dist/angular-local-storage.min.js"></script>
+
+    <script type="text/javascript" src="js/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+
+    
+    <!--  Checkbox, Radio & Switch Plugins -->
+	<script src="partials/btheme/assets/js/bootstrap-checkbox-radio-switch.js"></script>
+	
+		
+	<!--  Charts Plugin -->
+	<script src="partials/btheme/assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="partials/btheme/assets/js/bootstrap-notify.js"></script>
+    
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+	
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="partials/btheme/assets/js/light-bootstrap-dashboard.js"></script>
+	
+	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+	<script src="partials/btheme/assets/js/demo.js"></script>
+
+
+
+
+</head>
+
+<body>
+   	<div ng-view></div>
+</body>
+
+
+<!-- Main application file -->
+<script src="springApp.js"></script>
+
+<script src="controllers/homeCtrl.js"></script>
+<script src="controllers/loginCtrl.js"></script>
+<script src="controllers/profileCtrl.js"></script>
+<script src="controllers/newAccountCtrl.js"></script>
+<script src="controllers/feedCtrl.js"></script>
+<script src="controllers/navCtrl.js"></script>
+<script src="controllers/flightTrackingCtrl.js"></script>
+
+<script src="directives/enterDirective.js"></script>
+<script src="directives/iframeLoadDirective.js"></script>
+<script src="helper/cityImageResolver.js"></script>
+
+
+</html>

@@ -1,0 +1,5 @@
+/*!CK:3974687049!*//*1452015684,*/
+
+if (self.CavalryLogger) { CavalryLogger.start_js(["K2xTy"]); }
+
+__d('PerformanceStats',['Arbiter'],function a(b,c,d,e,f,g,h){if(c.__markCompiled)c.__markCompiled();var i='\u2026',j=i,k=[[]];function l(){h.inform('Performance/stats',{lastEndTime:j,stats:k},h.BEHAVIOR_STATE);}var m={reset:function(){if(k[0].length>0)k.unshift([]);j=i;l();},register:function(n,o){var p=o.prepare?o.prepare.start_time:o.render?o.render.start_time:null,q=o.render?o.render.end_time:o.prepare?o.prepare.end_time:null,r={pagelet:n,wall_time:q&&p?q-p:'N/A',end:q||'N/A',html_bytes:o.html_bytes||'N/A',html_gzip:o.html_gzip||'N/A',php_class:o.php_class||'N/A'};if(b.CavalryLogger){r.lid=b.CavalryLogger.getInstance().lid;h.subscribe("pagelet_event",function(s,t){if(t.event==="onload"&&n===t.id){var u=b.CavalryLogger.getInstance().events[n];if(u){r.arrive=u.arrive||'N/A';r.display=u.display||'N/A';r.js_done=u.jsdone||'N/A';r.css_done=u.css_load||'N/A';r.phase=u.phase||'N/A';}}});}if(q)if(j==i||j<q)j=q;k[0].push(r);l();},getPageletStats:function(){var n=[],o;for(o=0;o<k.length;o++)n=n.concat(k[o]);return n;}};f.exports=m;},null);

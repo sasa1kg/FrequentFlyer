@@ -1,0 +1,398 @@
+
+<div class="wrapper">
+	<div ng-include="'partials/btheme/navigation.html'" />
+
+
+	<script type="text/ng-template" id="customPopupTemplate.html">
+  	<div class="custom-popup-wrapper"
+     ng-style="{top: position().top+'px', left: position().left+'px'}"
+     style="display: block;"
+     ng-show="isOpen() && !moveInProgress"
+     aria-hidden="{{!isOpen()}}">
+    <p class="message">select airport from drop down.</p>
+	<p  class="cursorchg suggestionChoice" ng-click="selectMatch($index)" role="option" id="{{::match.id}}" index="$index" match="match" ng-repeat="match in matches"><img src="img/airport.png" width="24px"/>{{match.label}} [{{match.model.code}}] <small>{{match.model.city_name}} ({{match.model.country_code}})</small></p>
+  	</div>
+	</script>
+
+	<script type="text/ng-template" id="customTemplate.html">
+  	<a>
+      <img ng-src="https://cdn4.iconfinder.com/data/icons/dot/128/air_plane_airport.png" width="16">
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+  	</a>
+	</script>
+
+	<script type="text/ng-template" id="myPopoverTemplate.html">
+        <div class="iframeHolder">
+        <div class="form-group">
+          <label>{{dynamicPopover.reg}} {{dynamicPopover.type}}</label>
+          <iframe width="100%" height="500px" scrolling="no" iframe-onload="iframeLoadedCallBack()" ng-src="{{trustSrc(dynamicPopover.src)}}" style="border: 0px none; margin-left: -265px; height: 659px; margin-top: -500px; width: 500px;">
+  				<p>Your browser does not support iframes.</p>
+		  </iframe>
+        </div>
+		</div>
+    </script>
+
+	<script type="text/ng-template" id="myTrafficPopover.html">
+        <div class="iframeHolder">
+        <div class="form-group">
+		  <div class="signTraffic col-lg-12" ng-style="{'background' : dynamicPopover.line.color}">
+			<div class="col-lg-3">
+				<img ng-show="dynamicPopover.line.vehicle.local_icon == undefined" class="trafImg" src="{{dynamicPopover.line.vehicle.icon}}" max-width="32px" />
+				<img ng-show="dynamicPopover.line.vehicle.local_icon != undefined" class="trafImg" src="{{dynamicPopover.line.vehicle.local_icon}}" max-width="32px" />
+			</div>
+          	<div class="col-lg-9"><label class="text-center shortLineHolder" ng-class="{'whiteLine' : dynamicPopover.line.color != undefined && dynamicPopover.line.color != '#ffffff'}" ng-show="dynamicPopover.line.short_name == undefined || dynamicPopover.line.short_name.length == 0">{{dynamicPopover.line.name}} </label> <div class="text-center shortLineHolder"><strong class="shortTraffLine" ng-class="{'whiteLine' : dynamicPopover.line.color != undefined && dynamicPopover.line.color != '#ffffff'}">{{dynamicPopover.line.short_name}}</strong></div></div>
+		  </div>
+		<div class="text-center separateTop">
+		  <label class="text-center separateTop" ng-show="dynamicPopover.line.short_name.length != undefined">{{dynamicPopover.line.name}}</label></br>
+		  <label class="text-center">{{dynamicPopover.line.agencies[0].name}}</label></br>
+		  <label class="text-center"><a href="{{dynamicPopover.line.agencies[0].url}}">{{dynamicPopover.line.agencies[0].url}}</a></label></br>
+		  <label class="text-center">{{dynamicPopover.line.agencies[0].phone}}</label>
+		</div>
+        </div>
+		</div>
+    </script>
+
+
+	<div class="main-panel">
+		<nav class="navbar navbar-default navbar-fixed">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#navigation-example-2">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Profile</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-left">
+						<li><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown"> <i class="fa fa-dashboard"></i>
+						</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown"> <i class="fa fa-globe"></i> <b
+								class="caret"></b> <span class="notification">5</span>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Notification 1</a></li>
+								<li><a href="#">Notification 2</a></li>
+								<li><a href="#">Notification 3</a></li>
+								<li><a href="#">Notification 4</a></li>
+								<li><a href="#">Another notification</a></li>
+							</ul></li>
+						<li><a href=""> <i class="fa fa-search"></i>
+						</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href=""> Account </a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown"> Dropdown <b class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Action</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something</a></li>
+								<li class="divider"></li>
+								<li><a href="#">Separated link</a></li>
+							</ul></li>
+						<li><a href="#"> Log out </a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="card">
+							<div class="header">
+								<h4 class="title">Flight tracking</h4>
+							</div>
+							<div class="content">
+								<div class="row">
+									<div class="col-md-7">
+										<div class="form-group">
+											<label>Search</label>
+											<div class="typeahead-demo">
+												<input type="text" ng-model="airport"
+													placeholder="Enter city or airport name..."
+													ng-change="fetchAutoSuggestion()"
+													uib-typeahead="airport as airport.name for airport in autoSuggestion"
+													typeahead-popup-template-url="customPopupTemplate.html"
+													class="form-control">
+
+											</div>
+										</div>
+										<pre>Model: {{airport | json}}</pre>
+										<p ng-repeat="aipt in addAirports">{{airt.name}}
+											{{airt.code}}</p>
+									</div>
+									<div class="col-md-5">
+										<div class="form-group">
+											<label for="exampleInputEmail1">Password</label> <input
+												type="text" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h3>
+							{{airport.name}} <small>[{{airport.code}}]</small>
+							{{airport.city_name}} ({{airport.country_code}})
+						</h3>
+						<uib-tabset justified="true"> <uib-tab> <uib-tab-heading>
+						<div class="tabHead">
+							<img class="tabHeadImg" id="arrivalBlack" src="img/infoBlack.png" />
+							Airport information
+						</div>
+						</uib-tab-heading>
+						<div class="card card-user">
+							<div class="image">
+								<img class="lowOpac" src="img/airportTop.png" alt="..." />
+							</div>
+							<div class="content">
+								<div class="author">
+									<a> <img class="avatar border-gray cityAvatar"
+										src="{{iconURL}}" alt="..." />
+
+										<h4 class="title">
+											<small>Timezone {{airport.timezone}}</small></br>
+										</h4>
+									</a>
+								</div>
+								<p class="description text-center"></p>
+								<div class="mapHolder" id="mapHolder"></div>
+								<div class="alert alert-info separateTop"
+									ng-show="directionLoading">Loading directions...</div>
+								<div class="alert alert-warning separateTop"
+									ng-show="!directionLoading && !directionLoaded">No
+									directions to/from city available</div>
+								<div class="directionHolder separateTop"
+									ng-show="!directionLoading && directionLoaded">
+									<div class="btn-group">
+										<label class="btn btn-success"
+											ng-class="{'activeBtnDir' : direction=='from'}"
+											ng-click="dirChange(false)" ng-model="direction"
+											uib-btn-radio="'from'">From airport</label> <label
+											class="btn btn-success"
+											ng-class="{'activeBtnDir' : direction=='to'}"
+											ng-click="dirChange(true)" ng-model="direction"
+											uib-btn-radio="'to'">To airport</label>
+									</div>
+
+									<table class="table table-bordered"
+										ng-repeat="route in directionResponse.routes">
+										<thead>
+											<th>Arrival time</th>
+											<th>Departure time</th>
+											<th>Total distance</th>
+											<th>Duration</th>
+										</thead>
+										<tbody>
+											<tr ng-repeat="legs in route.legs">
+												<td>{{legs.arrival_time.text}}</td>
+												<td>{{legs.departure_time.text}}</td>
+												<td>{{legs.distance.text}}</td>
+												<td>{{legs.duration.text}}</td>
+											</tr>
+										</tbody>
+									</table>
+									<div ng-repeat="route in directionResponse.routes">
+										<table class="table table-bordered">
+											<tbody ng-repeat="leg in route.legs">
+												<tr ng-repeat="step in leg.steps">
+													<td>{{step.distance.text}}</td>
+													<td>{{step.duration.text}}</td>
+													<td>{{step.instructions}}</td>
+													<td>
+														<div ng-show="step.travel_mode != 'WALKING'">
+															<button popover-placement="right"
+																uib-popover-template="dynamicPopoverTraffic.templateUrl"
+																popover-title="{{step.transit.line.vehicle.name}} {{step.transit.line.short_name}}"
+																popover-trigger="mouseenter" type="button"
+																ng-show="step.transit.line != null"
+																ng-mouseenter="hoveredTraffic(step.transit.line)">
+																<img src="{{step.transit.line.vehicle.icon}}"
+																	max-width="32px" />
+															</button>
+															{{step.transit.line.name}}
+															{{step.transit.line.short_name}}
+														</div>
+														<div ng-show="step.travel_mode == 'WALKING'">
+															<img class="walkImg" src="img/icons/maps/walking.png" />
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						</uib-tab> <uib-tab> <uib-tab-heading>
+						<div class="tabHead">
+							<img class="tabHeadImg" id="arrivalBlack"
+								src="img/arrivalBlack.png" /> Arrivals
+						</div>
+						</uib-tab-heading>
+						<div class="content table-responsive table-full-width">
+							<table class="table table-bordered timetableTab">
+								<thead>
+									<th>
+										<p class="digFont">Flight status</p>
+									</th>
+									<th>
+										<p class="digFont">Time</p>
+									</th>
+									<th>
+										<p class="digFont">From</p>
+									</th>
+									<th>
+										<p class="digFont">Flight number</p>
+									</th>
+									<th>
+										<p class="digFont">Aircraft type/reg</p>
+									</th>
+								</thead>
+								<tbody>
+									<tr
+										ng-repeat="flightData in timetable | filter:{type:'arrival'} | orderBy: 'time'">
+										<td><img ng-show="flightData.status == 'flight'"
+											src="img/inflight.png" width="32px" /> <img
+											ng-show="flightData.status == 'landed'" src="img/landing.png"
+											width="32px" /> <img
+											ng-show="flightData.status == 'scheduled'"
+											src="img/expected.png" width="32px" />
+											<p class="digFont" ng-show="flightData.status != 'cancelled'">{{flightData.status}}</p>
+											<p class="digFont redText"
+												ng-show="flightData.status == 'cancelled'">{{flightData.status}}</p></td>
+										<td>
+											<p class="digFont">{{flightData.time}}</p>
+										</td>
+										<td>
+											<p class="digFont">{{flightData.departure_code}}</p>
+										</td>
+										<td>
+											<p class="digFont">{{flightData.flight.airline_code}}
+												{{flightData.flight.number}}</p>
+										</td>
+										<td>
+											<p class="digFont">{{flightData.flight.aircraft_code}}</p>
+											<button popover-placement="right"
+												uib-popover-template="dynamicPopover.templateUrl"
+												popover-title="{{flightData.reg_number}} {{flightData.flight.aircraft_code}}"
+												popover-trigger="mouseenter" type="button" class="digFont"
+												ng-show="flightData.reg_number != null"
+												ng-mouseenter="hovered(flightData.reg_number, flightData.flight.aircraft_code)">{{flightData.reg_number}}</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						</uib-tab> <uib-tab> <uib-tab-heading>
+						<div class="tabHead">
+							<img class="tabHeadImg" id="arrivalBlack"
+								src="img/departureBlack.png" /> Departures
+						</div>
+						</uib-tab-heading>
+						<div class="content table-responsive table-full-width">
+							<table class="table table-bordered timetableTab">
+								<thead>
+									<th>
+										<p class="digFont">Flight status</p>
+									</th>
+									<th>
+										<p class="digFont">Time</p>
+									</th>
+									<th>
+										<p class="digFont">To</p>
+									</th>
+									<th>
+										<p class="digFont">Flight number</p>
+									</th>
+									<th>
+										<p class="digFont">Aircraft type/reg</p>
+									</th>
+								</thead>
+								<tbody>
+									<tr
+										ng-repeat="flightData in timetable | filter:{type:'departure'}">
+										<td><img ng-show="flightData.status == 'flight'"
+											src="img/takeoff.png" width="32px" /> <img
+											ng-show="flightData.status == 'landed'" src="img/landing.png"
+											width="32px" /> <img
+											ng-show="flightData.status == 'scheduled'"
+											src="img/expected.png" width="32px" />
+											<p class="digFont" ng-show="flightData.status != 'flight'">{{flightData.status}}</p>
+											<p class="digFont" ng-show="flightData.status == 'flight'">Departed</p>
+										</td>
+										<td>
+											<p class="digFont">{{flightData.time}}</p>
+										</td>
+										<td>
+											<p class="digFont">{{flightData.arrival_code}}</p>
+										</td>
+										<td>
+											<button ng-click="live(flightData)">
+												<p class="digFont">{{flightData.flight.airline_code}}
+													{{flightData.flight.number}}</p>
+												<button>
+										</td>
+										<td>
+											<p class="digFont">{{flightData.flight.aircraft_code}}</p>
+											<button popover-placement="right"
+												uib-popover-template="dynamicPopover.templateUrl"
+												popover-title="{{flightData.reg_number}} {{flightData.flight.aircraft_code}}"
+												popover-trigger="mouseenter" type="button" class="digFont"
+												ng-show="flightData.reg_number != null"
+												ng-mouseenter="hovered(flightData.reg_number, flightData.flight.aircraft_code)">{{flightData.reg_number}}</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						</uib-tab> </uib-tabset>
+					</div>
+					<div class="col-md-4">
+						<div class="card card-user">
+							<div class="liveHolder">
+								<iframe ng-src="{{trustSrc(liveFlightURL)}}" width="100%"
+									scrolling="no"
+									style="border: 0px none; margin-left: 0px; height: 500px; margin-top: -200px; width: 600px;">
+									<p>Your browser does not support iframes.</p>
+								</iframe>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<footer class="footer">
+			<div class="container-fluid">
+				<nav class="pull-left">
+					<ul>
+						<li><a href="#"> Home </a></li>
+						<li><a href="#"> Company </a></li>
+						<li><a href="#"> Portfolio </a></li>
+						<li><a href="#"> Blog </a></li>
+					</ul>
+				</nav>
+				<p class="copyright pull-right">
+					&copy; 2015 <a href="http://www.creative-tim.com">Creative Tim</a>,
+					made with love for a better web
+				</p>
+			</div>
+		</footer>
+
+	</div>
+</div>

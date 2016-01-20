@@ -1,0 +1,213 @@
+@font-face {
+  font-family: 'digital';
+  src: url('fonts/digital-7.ttf');
+}
+.footerPic {
+	max-height: 80px;
+	max-width: 120px;
+}
+
+.homeImageHolder {
+	width: 100%;
+	height: 80px !important;
+}
+
+.optionCard {
+	height: 210px !important;
+}
+
+.pulltop5 {
+	margin-top: 15px !important;
+}
+
+.pulldown5 {
+	margin-bottom: 15px !important;
+}
+
+.cursorchg {
+	cursor: pointer !important;
+}
+
+.feed_image {
+	max-width: 80px;
+	margin-top: 30px;
+}
+
+.feed_footer {
+	margin-top: 43px !important;
+}
+
+.feedSearch {
+	height: 30px !important;
+	margin-top: 20px;
+}
+
+.feedSelect {
+	padding: 2px !important;
+}
+
+.techBack {
+	background: #ffffe5;
+}
+
+.sportBack {
+	background: #ffcccc;
+}
+
+.newsBack {
+	background: #cce5ff;
+}
+
+.lifestyleBack {
+	background: #f2ccff;
+}
+
+.feedSearchBtn {
+	padding-top: 5px !important;
+}
+
+.navSubTree {
+	margin-left: 20px;
+}
+
+.navSubLink {
+	font-size: 11px !important;
+}
+
+.typeahead-demo .custom-popup-wrapper {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 2000;
+	display: none;
+	background-color: white;
+	border: 1px solid #868686;
+}
+
+.typeahead-demo .custom-popup-wrapper>.message {
+	padding: 10px 20px;
+	border-bottom: 1px solid #ddd;
+	color: #868686;
+}
+
+.typeahead-demo .custom-popup-wrapper>.dropdown-menu {
+	position: static;
+	float: none;
+	display: block;
+	min-width: 160px;
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	color: black;
+}
+
+.customth {
+	z-index: 2000;
+}
+
+.elipsText {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.suggestionChoice:HOVER {
+	background-color: #f5f5f5;
+}
+.digFont {
+	font-family: 'digital';
+	font-size: 20px;
+    line-height: 1;	
+    color: green;
+}
+.timetableTab {
+	background: black;
+}
+.popover {
+  position: absolute;
+  z-index: 1000;
+}
+.iframeHolder {
+	z-index: 99999 !important;
+	min-width: 200px !important;
+	overflow: hidden;
+}
+.blink {
+	text-decoration: blink;
+}
+.tabHeadImg {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 35px;
+	height: 35px;
+	color: black;
+}
+.tabHead {
+	border-radius: 0px !important;
+	color: black;
+	width: 100%;
+	height: 100%;
+	font-size: 18px;
+}
+.nav-tabs.nav-justified > li > a:link  {
+  border-radius: 0px !important;
+}
+
+.nav-tabs.nav-justified > li.active > a {
+  background: #e5e600;
+}
+.redText {
+	color: red;
+}
+.mapHolder {
+	width: 100%;
+	height: 200px;
+}
+.directionsHolder {
+
+}
+.lowOpac {
+	opacity: 0.3;
+}
+.cityAvatar {
+	width: 100px !important;
+	height: 100px! important;
+	background: white;
+}
+.walkImg {
+	max-width: 32px;
+}
+.signTraffic {
+	border: 1px solid black;
+	border-radius: 3px;
+	min-height: 35px;
+	padding: 5px;
+}
+.trafImg {
+	border: 1px solid gray;
+	background: white;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	padding: 3px;
+	border-radius: 2px;
+}
+.shortTraffLine {
+	font-size: 20px;
+}
+.shortLineHolder {
+    margin-top: 8px;
+}
+.whiteLine {
+	color: white;
+}
+.separateTop {
+	margin-top: 10px !important;
+}
+.activeBtnDir {
+	background-color: green !important;
+	color: white !important;
+}
+.liveHolder {
+	overflow: hidden;
+}
